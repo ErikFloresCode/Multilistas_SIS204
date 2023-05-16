@@ -12,6 +12,8 @@ public:
 	//contructor
 	LSEAsignaturas();
 	~LSEAsignaturas();
+	
+	nodo* getantcursor(nodo* p)override;
 
 	//funciones de la lista Asignatura
 	void mostrar_f();
@@ -25,5 +27,10 @@ public:
 	void mostrar_cant_M_F();
 	int cantidad_M(nodoestudiante* n);
 	int cantidad_F(nodoestudiante* n);
+
+	void insert_first(nodo* nodop)override;
+	void insert_last(nodo* nodop)override;
+	nodo* delet_first()override;
+	nodo* delet_last()override;
 };
 

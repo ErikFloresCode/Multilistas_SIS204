@@ -6,6 +6,13 @@ LSEAsignaturas::LSEAsignaturas() : Lista(){
 LSEAsignaturas::~LSEAsignaturas() {
 }
 
+nodo* LSEAsignaturas::getantcursor(nodo* q) {
+	nodo* aux = Lista::getantcursor(q);
+	if (!vacia() && q == first)
+		aux = last;
+	return aux;
+}
+
 void LSEAsignaturas::mostrar_f(){
 	
 	nodoasig* p = nullptr;
@@ -189,4 +196,27 @@ void LSEAsignaturas::mostrar_cant_M_F() {
 	}
 	cout << "Cantidad de Varones: " << cant_M << endl;
 	cout << "Cantidad de Mujeres: " << cant_F << endl;
+}
+
+void LSEAsignaturas::insert_first(nodo* nodop) {
+	Lista::insert_first(nodop);
+	if (!vacia())
+		last->next = first;
+}
+void LSEAsignaturas::insert_last(nodo* nodop) {
+	Lista::insert_last(nodop);
+	if (!vacia())
+		last->next = first;
+}
+nodo* LSEAsignaturas::delet_first() {
+	nodo* aux = Lista::delet_first();
+	if (!vacia() && first != last)
+		last->next = first;
+	return aux;
+}
+nodo* LSEAsignaturas::delet_last() {
+	nodo* aux = Lista::delet_last();
+	if (!vacia() && first != last)
+		last->next = first;
+	return aux;
 }

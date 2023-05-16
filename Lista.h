@@ -19,15 +19,15 @@ public:
 	nodo* getlast() { return last; };
 	nodo* getfirst() { return first; };
 	nodo* getproxcursor(nodo *p);
-	nodo* getantcursor(nodo *p);
+	virtual nodo* getantcursor(nodo *p);
 
 	//	void insert(nodo* nodop);
 	
-	void insert_first(nodo* nodop);
-	void insert_last(nodo* nodop);
-	virtual void insert(nodo* nodop, nodo* p);
-    nodo* delet_first();
-	nodo* delet_last();
+	virtual void insert_first(nodo* nodop);
+	virtual void insert_last(nodo* nodop);
+	void insert(nodo* nodop, nodo* p);
+    virtual nodo* delet_first();
+	virtual nodo* delet_last();
 	int total_elementos();
 };
 
