@@ -32,5 +32,7 @@ public:
 	void insert_last(nodo* nodop)override;
 	nodo* delet_first()override;
 	nodo* delet_last()override;
+	int total_asignaturas();
+	void mostrar_estudiantes_por_sexo(char sexo);
 };
 

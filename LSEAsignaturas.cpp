@@ -1,3 +1,4 @@
+#include <cctype>
 #include "LSEAsignaturas.h"
 
 LSEAsignaturas::LSEAsignaturas() : Lista(){
@@ -20,18 +21,17 @@ void LSEAsignaturas::mostrar_f(){
 		cout << "Lista vacia";
 	else
 	{
-		//p no esta inicializando correctamente
-		int i;
+		
 		p = (nodoasig*)first;
 		
-		for (i = 1; p != NULL; i++){
-			cout << "mostrar i" << i << endl;
+		//for (i = 0; i < cant; i++){
+		do{
 			cout << p->codigo << endl;
 			cout << p->descripcion << endl;
 			cout << p->cantidad << endl;
 			p = p->getnext();
 
-		}
+		} while (p != first);
 	}
 }
 
@@ -46,13 +46,13 @@ void LSEAsignaturas::mostrar_w()
 
 	{
 		p = (nodoasig*)first;
-		while (p != NULL) {
+		do {
 			cout << p->codigo << endl;
 			cout << p->descripcion << endl;
 			cout << p->cantidad << endl;
 			p = p->getnext();
-			
-		}
+
+		} while (p != first);
 	}
 
 	return;
@@ -61,34 +61,36 @@ void LSEAsignaturas::mostrar_w()
 
 nodoasig *LSEAsignaturas::buscar_asignatura(string valor) {
 
-	nodoasig* p, *q;
+	nodoasig* p, *q = nullptr;
 	bool enc = false;
 
 	p = (nodoasig*)first;
-	while ((p != nullptr) && (p->codigo != valor)) {
-
-		q = p;
+	//while ((p != nullptr) && (p->codigo != valor)) {
+	do{
+		if (p->codigo == valor)
+			q = p;
 		p = p->getnext();
-	}
+	} while (p != first);
 
-	return p;
+	return q;
 
 }
 
 nodoasig* LSEAsignaturas::buscar_posicion(string valor) {
-
-	nodoasig* p, * q;
+	
+	nodoasig* p, * q = nullptr;
 	bool enc = false;
 
 	p = (nodoasig*)first;
-	while ((p != nullptr) && (p->codigo < valor)) {
-
-		q = p;
+	//while ((p != nullptr) && (p->codigo < valor)) {
+	do {
+		if (p->codigo < valor)
+			q = p;
 		p = p->getnext();
-	}
+	} while (p != first);
 
-	return p;
-
+	return q;
+	
 }
 
 void LSEAsignaturas::delet(string valor)
@@ -126,11 +128,12 @@ void LSEAsignaturas::delet(string valor)
 }
 
 void LSEAsignaturas::insertar(nodoasig *nodop){
-nodoasig* p;
-
-p = buscar_posicion(nodop->codigo);
-insert(nodop, p);
-return;
+	nodoasig* p = nullptr;
+	if(!vacia())
+		p = buscar_posicion(nodop->codigo);
+	insert(nodop, p);
+	if (!vacia())
+		last->next = first;
 }
 
 void LSEAsignaturas::mostrar_estudiantes(nodoasig* nodop) {
@@ -189,13 +192,19 @@ int LSEAsignaturas::cantidad_F(nodoestudiante* n) {
 void LSEAsignaturas::mostrar_cant_M_F() {
 	nodoasig* n = (nodoasig*)first;
 	int cant_M = 0, cant_F = 0;
-	for (int i = 0; n != NULL; i++) {
-		cant_M += cantidad_M(n->nextest); 
-		cant_F += cantidad_F(n->nextest);
-		n = n->getnext();
+	//for (int i = 0; n != NULL; i++) {
+	if (!vacia()) {
+		do {
+			cant_M += cantidad_M(n->nextest);
+			cant_F += cantidad_F(n->nextest);
+			n = n->getnext();
+		} while (n != first);
+		cout << "Cantidad de Varones: " << cant_M << endl;
+		cout << "Cantidad de Mujeres: " << cant_F << endl;
 	}
-	cout << "Cantidad de Varones: " << cant_M << endl;
-	cout << "Cantidad de Mujeres: " << cant_F << endl;
+	else
+		cout << "lista vacia" << endl;
+	
 }
 
 void LSEAsignaturas::insert_first(nodo* nodop) {
@@ -219,4 +228,34 @@ nodo* LSEAsignaturas::delet_last() {
 	if (!vacia() && first != last)
 		last->next = first;
 	return aux;
+}
+
+int LSEAsignaturas::total_asignaturas() {
+	nodoasig* p = (nodoasig*)first;
+	int i = 0;
+	do {
+		i++;
+		p = p->getnext();
+	} while (p != first);
+	return i;
+}
+
+void LSEAsignaturas::mostrar_estudiantes_por_sexo(char sexo_M) {
+	nodoasig* n = (nodoasig*)first;
+	nodoestudiante* nodoe = nullptr;
+	char sexo_m = std::tolower(sexo_M);
+	if (!vacia()) {
+		do {
+			nodoe = n->nextest;
+			for (int i = 0; nodoe != NULL; i++) {
+				if (nodoe->sexo == sexo_M || nodoe->sexo == sexo_m)
+					nodoe->verInfo();
+				nodoe = nodoe->getnext();
+			}
+			n = n->getnext();
+		} while (n != first);
+		
+	}
+	else
+		cout << "lista vacia" << endl;
 }

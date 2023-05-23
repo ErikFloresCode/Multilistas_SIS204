@@ -59,6 +59,7 @@ void Lista::insert_last(nodo* nodop)
 
 void Lista::insert(nodo* nodop, nodo *p)
 {
+	
 	nodo* q = nullptr;
 	if (vacia())
 	{
@@ -68,7 +69,8 @@ void Lista::insert(nodo* nodop, nodo *p)
 	}
 	else
 	{
-		if (p == first) insert_first(nodop);
+		if (p == first) 
+			insert_first(nodop);
 		else
 		{
 			q = getantcursor(p);
@@ -80,6 +82,7 @@ void Lista::insert(nodo* nodop, nodo *p)
 			}
 		}	
 	}
+	
 }
 
 nodo* Lista::delet_first(){

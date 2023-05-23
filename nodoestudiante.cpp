@@ -21,3 +21,11 @@ nodoestudiante::~nodoestudiante(){
 nodoestudiante* nodoestudiante::getnext(){
 	return (nodoestudiante*)nodo::getnext();
 }
+
+void nodoestudiante::verInfo() {
+	cout << id << endl;
+	cout << nombre << endl;
+	cout << apellido << endl;
+	cout << edad << endl;
+	cout << sexo << endl;
+}

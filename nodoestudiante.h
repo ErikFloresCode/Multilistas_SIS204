@@ -28,6 +28,6 @@ public:
 	void setnombre(string _nombre) { nombre = _nombre; }
 	void setapellido(string _apellido) { apellido= _apellido; }
 	void setedad(int _edad) { edad = _edad; }
-	
+	void verInfo();
 };
 

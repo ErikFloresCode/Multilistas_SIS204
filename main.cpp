@@ -146,19 +146,21 @@ int main()
 
 		cout << "           LISTA DE ASIGNATURAS" << endl;
 		cout << "      Seleccione la opcion a realizar\n\n";
-		cout << "      1.- Insertar una asignatura por delante\n";
-		cout << "      2.- Insertar una asignatura por atras\n";
-		cout << "      3.- Insertar una asignatura ordenadamente\n";
-		cout << "      4.- Mostrar toda la lista de asignaturas utilizando un for\n";
-		cout << "      5.- Mostrar toda la lista de asignaturas utilizando un while\n";
-		cout << "      6.- Eliminar la primera asignatura\n";
-		cout << "      7.- Eliminar la ultima asignatura\n";
-		cout << "      8.- Eliminar una determinada asignatura\n";
-		cout << "      9.- Cantidad de Asignaturas en la lista\n\n";
-		cout << "      10.- Mostrar cantidad de estudiantes Masculino y Femeninos\n";
-		cout << "     11.- Insertar un estudiante en una asignatura\n";
-		cout << "     12.- Mostrar todos los estudiantes de una asignatura\n";
-		cout << "     15.- Salir";
+		cout << "		1.- Insertar una asignatura por delante\n";
+		cout << "		2.- Insertar una asignatura por atras\n";
+		cout << "		3.- Insertar una asignatura ordenadamente\n";
+		cout << "		4.- Mostrar toda la lista de asignaturas utilizando un for\n";
+		cout << "		5.- Mostrar toda la lista de asignaturas utilizando un while\n";
+		cout << "		6.- Eliminar la primera asignatura\n";
+		cout << "		7.- Eliminar la ultima asignatura\n";
+		cout << "		8.- Eliminar una determinada asignatura\n";
+		cout << "		9.- Cantidad de Asignaturas en la lista\n";
+		cout << "		10.- Mostrar cantidad de estudiantes Masculino y Femeninos\n";
+		cout << "		11.- Insertar un estudiante en una asignatura\n";
+		cout << "		12.- Mostrar todos los estudiantes de una asignatura\n";
+		cout << "		13.- Mostrar todos los estudiantes Masculinos\n";
+		cout << "		14.- Mostrar todos las estudiantes Femeninas\n";
+		cout << "		15.- Salir";
 		cout << "       \n\n\nOpcion(1-15): ";
 
 		cin >> opc;
@@ -190,7 +192,7 @@ int main()
 			eliminar_asignatura(3);
 			break;
 		case 9:
-			cout << "La cantidad de asignaturas es : " << L->total_elementos() << endl;
+			cout << "La cantidad de asignaturas es : " << L->total_asignaturas() << endl;
 			break;
 		case 10:
 			L->mostrar_cant_M_F();
@@ -201,6 +203,12 @@ int main()
 		case 12:
 			mostrar_estudiantes_asignatura();
 			break;
+		case 13:
+			L->mostrar_estudiantes_por_sexo('M');
+			break;
+		case 14:
+			L->mostrar_estudiantes_por_sexo('F');
+			break;
 		case 15:
 			exit(0);
 			break;
@@ -208,7 +216,7 @@ int main()
 		cout << "oprima enter" << endl;
 		(void)getchar();
 		(void)getchar();
-	} 	while ((opc != 14));
+	} 	while ((opc != 15));
 
 	return 0;
 }
